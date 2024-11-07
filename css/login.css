@@ -1,0 +1,137 @@
+:root{
+    --main: rgb(11, 16, 44);
+    --placeholder: rgba(255, 255, 255, 0.459)
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: var(--main);
+}
+
+.contenedor{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    z-index: 1;
+}
+
+.cube{
+    /* background-color: tomato; */
+    padding: 20px;
+    text-align: center;
+    z-index: 10;
+}
+
+input{
+    width: 250px;
+    height: 32px;
+    margin-top: 15px;
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 20px;
+    color: white;
+    padding-left: 15px;
+    transition: 0.2s;
+}
+
+::placeholder{
+    color: var(--placeholder);
+    font-size: 15px;
+}
+
+input:hover{
+    transform: scale(1.03);
+    border: 1.5px solid aquamarine;
+}
+
+h1{
+    text-align: center;
+    margin-bottom: 5px;
+    color: aquamarine;
+    font-size: 40px;
+    transition: 0.3s;
+}
+
+.button-cube, .link{
+    margin: 13px;
+}
+
+button{
+    height: 40px;
+    width: 250px;
+    transition: 0.3s;
+    border-radius: 10px;
+    background-color: transparent;
+    color: aquamarine;
+    font-size: 20px;
+    border: 2px solid aquamarine;
+    letter-spacing: 1px;
+}
+
+button:hover{
+    transform: scale(1.08);
+    border-radius: 20px;
+    background-color: aquamarine;
+    color: rgb(11, 16, 44);
+    border: 2px solid aquamarine;
+    font-weight: bold;
+}
+
+.link a{
+    color: white;
+    text-decoration: none;
+    transition: 0.2s;
+    margin: 1.5px;
+}
+
+.link a:hover{
+    color: crimson;
+    transform: scale(1.05);
+    text-decoration: underline;
+}
+
+span{
+    position: absolute;
+    height: 10px;
+    width: 60px;
+    background-color: rgb(44, 66, 128);
+    border-radius: 30px;
+    transform-origin: 210px;
+    margin: auto;
+    transform: scale(1.2) rotate(calc(var(--i)*360deg / 50));
+    animation: blink 2.5s linear infinite;
+    animation-delay: calc(var(--i)* 2.5s / 50);
+    top: 50%;
+    left: 40px;
+
+}
+
+.loading{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /*background-color: rgba(220, 20, 60, 0.318);*/
+    width: 500px;
+    height: 500px;
+    z-index: -2;
+}
+
+@keyframes blink{
+    0%{
+        background-color: aquamarine;
+        filter: blur(1.5px);
+    }
+
+    25%{
+        background-color: rgb(44, 66, 128);
+    }
+}
