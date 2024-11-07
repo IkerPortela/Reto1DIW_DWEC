@@ -1,0 +1,59 @@
+/* styles.css */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+    margin: 0;
+}
+
+#game {
+    position: relative;
+    width: 800px;
+    height: 200px;
+    background-color: #fff;
+    overflow: hidden;
+    margin-bottom: 20px;
+    border: 2px solid #333;
+}
+
+#dino {
+    position: absolute;
+    bottom: 0;
+    left: 50px;
+    width: 40px;
+    height: 40px;
+    background-color: #333;
+}
+
+#botonJuego {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.obstacle {
+    position: absolute;
+    bottom: 0;
+    width: 20px;
+    height: 40px;
+    background-color: #555;
+}
+#score, #highScore, #attempts {
+    margin: 0 80px; /* Espacio entre los elementos */
+}
+
+#score-container {
+    display: flex;
+    flex-direction: row;  /* Alinea los elementos en una fila */
+    justify-content: center;
+    margin-bottom: 10px; /* Espacio inferior entre la fila de puntuaciones y el juego */
+}
+.coin {
+    position: absolute;
+    bottom: 0;
+    width: 20px;
+    height: 20px; 
+    background-color: yellow;
+}
