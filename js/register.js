@@ -1,7 +1,4 @@
-import { UserManager } from './UserManager.js';
 import { User } from './User.js';
-
-const userManager = new UserManager();
 
 // Esperamos a que el DOM esté completamente cargado
 document.addEventListener('DOMContentLoaded', function() {
@@ -34,9 +31,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // Crear una instancia de usuario usando la clase User
             const usuario = new User(username, password, email);
 
-            // Agregar el usuario a UserManager (opcional)
-            userManager.addUser(username, password, email);
-
             // Guardar el usuario en localStorage
             guardarUsuarioEnLocalStorage(usuario);
     
@@ -46,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
             passwordInput.value = '';
     
             alert('Usuario registrado con éxito');
+            window.location.href = 'login.html';
         } else {
             alert('Por favor, completa todos los campos');
         }

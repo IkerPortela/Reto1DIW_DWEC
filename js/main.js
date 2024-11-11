@@ -2,7 +2,6 @@
 
 import { Game } from './Game.js';
 import { User } from './User.js';
-import { UserManager } from './UserManager.js';
 
 window.onload = () => {
     // Obtener la lista de usuarios desde localStorage
@@ -56,6 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
             attemptsElement.textContent = `Intentos: ${usuarioLogueado.intentos}`;
         }
     }
+    
 });
 
 

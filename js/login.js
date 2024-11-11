@@ -1,43 +1,23 @@
-import { UserManager } from './UserManager.js';
-
-const userManager = new UserManager();
-
-// Agregar un usuario de prueba (o lo puedes hacer manualmente para pruebas)
-userManager.addUser('usuario1', 'password123', 'usuario1@email.com');
-
 // Referencias a los campos del formulario
 const loginButton = document.getElementById('loginButton');
 const usernameInput = document.getElementById('usuario');
 const passwordInput = document.getElementById('contraseña');
-
-// Función para recuperar los datos del usuario desde localStorage
-function cargarUsuarioGuardado() {
-    const usuarioGuardado = localStorage.getItem('usuario');
-    
-    if (usuarioGuardado) {
-        const user = JSON.parse(usuarioGuardado);
-        // Completar los campos con los datos del usuario guardado
-        usernameInput.value = user.usuario;
-        passwordInput.value = user.contraseña;
-    }
-}
-
-// Llamamos a la función para cargar el usuario guardado al cargar la página
-cargarUsuarioGuardado();
 
 // Evento al hacer click en el botón de login
 loginButton.addEventListener('click', () => {
     const username = usernameInput.value;
     const password = passwordInput.value;
 
-    // Verificar si el usuario y la contraseña son correctos
-    const user = userManager.findUser(username, password);  // Asegúrate de que este método busque correctamente
+    // Obtener la lista de usuarios desde localStorage
+    const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+
+    // Buscar el usuario en la lista usando el username y password
+    const user = usuarios.find(u => u.username === username && u.password === password);
 
     if (user) {
-        // Después de un login exitoso
-localStorage.setItem('usernameActivo', username);
-
-        window.location.href = 'game.html';
+        // Si el usuario es encontrado y la contraseña es correcta
+        localStorage.setItem('usernameActivo', username); // Guardar el usuario activo en localStorage
+        window.location.href = 'inicio.html';
     } else {
         // Si el login es incorrecto
         alert('Usuario o contraseña incorrectos.');

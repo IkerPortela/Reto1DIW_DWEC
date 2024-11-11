@@ -87,7 +87,7 @@ export class Game {
                 this.stopGame();
                 this.resetGame();
             }
-            if (obstacle.x < 50 && obstacle.x > 45) {
+            if (obstacle.x < 50 && obstacle.x > 40) {
                 this.score += 10; // Incrementar la puntuación por saltar
                 this.updateScore(); // Actualizar la visualización de la puntuación
             }
@@ -208,12 +208,5 @@ export class Game {
         // Reiniciar la puntuación a cero y actualizar la visualización
         this.score = 0;
         this.updateScore();
-    }
-
-    resetGame() {
-        // Reiniciar el juego tras un breve descanso
-        setTimeout(() => {
-            this.start();  // Iniciar el juego
-        }, 1000);
     }
 }

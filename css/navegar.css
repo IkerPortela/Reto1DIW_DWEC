@@ -1,0 +1,426 @@
+:root{
+    --main: rgb(11, 16, 44);
+    --complemento: aquamarine;
+}
+
+@font-face {
+    font-family: Itim;
+    src: url(/sources/fonts/Itim/Itim-Regular.ttf);
+}
+
+@font-face {
+    font-family: Fredoka;
+    src: url(/sources/fonts/Comic_Neue/ComicNeue-Light.ttf);
+}
+
+@font-face {
+    font-family: Concert One;
+    src: url(/sources/fonts/Concert_One/ConcertOne-Regular.ttf);
+}
+
+@font-face {
+    font-family: Kosugi;
+    src: url(/sources/fonts/Kosugi_Maru/KosugiMaru-Regular.ttf);
+}
+
+@font-face {
+    font-family: Comic Neue;
+    src: url(/sources/fonts/Comic_Neue/ComicNeue-Regular.ttf);
+}
+
+@font-face {
+    font-family: PatuaOne;
+    src: url(/sources/fonts/Patua_One/PatuaOne-Regular.ttf);
+}
+
+@font-face {
+    font-family: Dongle;
+    src: url(/sources/fonts/Dongle/Dongle-Regular.ttf);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Dongle;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--main);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid aquamarine;
+    background-color: var(--main);
+    padding: 0 20px;
+}
+
+header div img {
+    height: 8vh;
+}
+
+header nav {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+header nav .ventanas a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    font-size: 45px;
+    width: 25vh;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.ventanas{
+    display: flex;
+    margin-right: 50px;
+    height: 10vh;
+}
+
+header nav .ventanas a:hover {
+    color: aquamarine;
+    background-color: rgb(3, 6, 27);
+}
+
+header nav a img {
+    width: 60px;
+    border-radius: 50%;
+    margin-left: 5px;
+    border: 2px aquamarine solid;
+}
+
+.botones{
+    display: flex;
+    gap: 20px;
+}
+
+.botones a{
+    background-color: var(--main);
+    border: 2px solid aquamarine;
+    color: aquamarine;
+    font-weight: bold;
+    transition: all 0.3s;
+    font-size: 25px;
+    text-decoration: none;
+    text-align: center;
+    align-items: center;
+    width: 100px;
+    border-radius: 5px;
+}
+
+.botones a:hover{
+    background-color: aquamarine;
+    color: var(--main);
+    cursor: pointer;
+}
+
+main {
+    padding: 20px;
+    height: 90vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                url(/sources/img/fondoInicio.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.mensaje h1 {
+    font-size: 100px;
+    color: white;
+    font-weight: bold;
+}
+
+.comenzar {
+    padding: 15px 30px;
+    font-size: 30px;
+    color: var(--main);
+    background-color: transparent;
+    border: 10px solid aquamarine;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 400px;
+    height: 400px;
+    padding: 50px 0 0 40px;
+}
+
+.comenzar:hover {
+    background-color: aquamarine;
+    transform: scale(105%);
+    box-shadow: 0 0 50px 0 aquamarine;
+}
+
+.comenzar img{
+    width: 80%;
+    filter: invert();
+    transition: 0.3s;
+}
+
+.comenzar img:hover{
+    filter: none;
+}
+
+.ranking-content {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background: linear-gradient(rgba(0, 0, 0, 0), rgb(127, 255, 212, 0.3));
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+    margin-top: 30px;
+}
+
+.ranking-content .ranking {
+    text-align: center;
+    font-size: 120px;
+    color: white;
+    font-weight: bold;
+}
+
+.ranking-content button{
+    width: 60px;
+    height: 60px;
+    margin-left: 30px;
+    background-color: aquamarine;
+    border: none;
+    border-radius: 50%;
+    right: 0;
+    margin-right: 60px;
+    margin-top: 30px;
+    position: absolute;
+    right: 34%;
+    top: 0%;
+    transition: all 0.2s;
+}
+
+.ranking-content button:hover{
+    background-color: white;
+    box-shadow: 0 0 50px 0 white;
+    transform: scale(105%);
+    cursor: pointer;
+}
+
+.ranking-content button img{
+    width: 90%;
+}
+
+.ranking-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.ranking-item {
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border: 2px solid aquamarine;
+    border-radius: 10px;
+    background: linear-gradient(rgba(0, 0, 0, 0), rgb(127, 255, 212, 0.2));
+    transition: all 0.3s;
+}
+
+.ranking-item:hover{
+    background-color: rgba(127, 255, 212, 0.2);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-avatar {
+    width: 50px;
+    height: 50px;
+    background-color: gray;
+    border-radius: 50%;
+}
+
+.user-name {
+    font-size: 20px;
+    color: aquamarine;
+    font-weight: bold;
+}
+
+.user-stats {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-stats .user-time{
+    margin-right: 50px;
+}
+
+.user-icon {
+    width: 20px;
+    height: 20px;
+    background-color: aquamarine;
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+.user-time {
+    font-size: 18px;
+    color: white;
+}
+
+.user-points {
+    font-size: 40px;
+    font-weight: bold;
+    color: aquamarine;
+    font-family: Concert One;
+}
+
+.contenedor-perfil {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+    padding: 20px;
+    background-color: rgb(15, 20, 50);
+    color: white;
+    height: 150vh;
+}
+
+.foto-perfil {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 30px;
+}
+
+.foto-perfil img {
+    border-radius: 50%;
+    width: 90%;
+    border: 10px solid aquamarine;
+    background-color: aquamarine;
+}
+
+.contenedor-perfil h2{
+    font-family: Concert One;
+    width: 90%;
+    text-align: center;
+    font-size: 40px;
+}
+
+.info-basica {
+    padding: 15px;
+    width: 90%;
+    height: 10%;
+    font-size: 25px;
+    background-color: aquamarine;
+    text-align: center;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 30px;
+    transition: all 0.3s;
+}
+
+.info-basica a{
+    text-decoration: none;
+    color: var(--main);
+}
+
+.tabla-estadisticas {
+    grid-column: 2;
+    width: 90%;
+    border-collapse: collapse;
+    margin-left: 50px;
+    font-size: 30px;
+}
+
+.tabla-estadisticas th, .tabla-estadisticas td {
+    border: 1px solid aquamarine;
+    padding: 10px;
+    text-align: center;
+    font-family: fredoka;
+    font-size: 25px;
+}
+
+.tabla-estadisticas th {
+    background-color: rgb(20, 25, 60);
+    color: aquamarine;
+    font-size: 50px;
+    font-family: Dongle;
+}
+
+.tabla-estadisticas td {
+    background-color: rgb(20, 25, 60);
+}
+
+
+footer {
+    text-align: center;
+    padding: 10px;
+    border-top: 2px solid aquamarine;
+    font-size: 14px;
+    color: #777;
+}
+
+@media (max-width: 600px) {
+    .comenzar{
+        transform: scale(30%);
+    }
+
+    .comenzar:hover{
+        transform: scale(50%);
+    }
+
+    main{
+        background-size: 100vw;
+    }
+
+    header div img{
+        display: none;
+    }
+
+    .botones{
+        position: absolute;
+        right: 0;
+        margin: 20px;
+        top: 80px;
+    }
+
+    .ventanas {
+        width: 250px;
+    }
+
+    .ranking-content button{
+        left: 0;
+        transform: scale(80%);
+        top: 0;
+    }
+
+    .ranking-item{
+        width: 100%;
+    }
+
+    .tabla-estadisticas{
+        margin-top: 30px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

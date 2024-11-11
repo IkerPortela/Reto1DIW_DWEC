@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interfaz Simple</title>
-    <link rel="stylesheet" href="navegar.css">
+    <link rel="stylesheet" href="css/navegar.css">
 </head>
 <body>
 
     <header>
         <div class="logo">
-            <img src="/Reto/sources/img/logo.webp" alt="logo">
+            <img src="/sources/img/logo.png" alt="logo">
         </div>
         <nav>
             <div class="ventanas">
@@ -18,15 +18,17 @@
                 <a href="ranking.html" id="ranking">Ranking</a>
             </div>
             <div class="botones">
-                <button>Login</button>
-                <button>Registro</button>
+                <a href="login.html">Login</a>
+                <a href="registro.html">Registro</a>
             </div>
-            <a href="usuario.html" id="usuario"><img src="/Reto/sources/img/pfp.png" alt="usuario"></a>
+            <a href="usuario.html" id="usuario">
+                <img id="profileImage" src="/sources/img/pfp.png" alt="Imagen de perfil en la barra de navegación">
+            </a>
         </nav>
     </header>
 
     <section class="ranking-content">
-        <span class="ranking">Ranking</span><button><img src="/Reto/sources/img/refresh.png" alt=""></button>
+        <span class="ranking">Ranking</span><button><img src="/sources/img/refresh.png" alt=""></button>
         <div class="ranking-list">
             <div class="ranking-item">
                 <div class="user-info">
@@ -143,8 +145,8 @@
     
 
     <footer>
-        <p>© 2024 Tu Empresa</p>
+        <p>© 2024 Street Runner</p>
     </footer>
-
+    <script type="module" src="js/ranking.js"></script>
 </body>
 </html>

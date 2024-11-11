@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interfaz Simple</title>
-    <link rel="stylesheet" href="navegar.css">
+    <link rel="stylesheet" href="css/navegar.css">
 </head>
 <body>
 
     <header>
         <div class="logo">
-            <img src="/Reto/sources/img/logo.webp" alt="logo">
+            <img src="/sources/img/logo.png" alt="logo">
         </div>
         <nav>
             <div class="ventanas">
@@ -18,62 +18,39 @@
                 <a href="ranking.html" id="ranking">Ranking</a>
             </div>
             <div class="botones">
-                <button>Login</button>
-                <button>Registro</button>
+                <a href="login.html">Login</a>
+                <a href="registro.html">Registro</a>
             </div>
-            <a href="usuario.html" id="usuario"><img src="/Reto/sources/img/pfp.png" alt="usuario"></a>
+            <a href="usuario.html" id="usuario">
+                <img id="profileImage" src="/sources/img/pfp.png" alt="Imagen de perfil en la barra de navegación">
+            </a>
         </nav>
     </header>
+
     <section class="contenedor-perfil">
         <div class="foto-perfil">
-            <img src="/Reto/sources/img/pfp.png" alt="Foto de Perfil">
-            <h2>Nombre del Jugador</h2>
+            <input type="file" id="fileReader">
+            <img id="preview" src="" alt="Previsualización de la imagen">
+            <h2>Perfil del Jugador</h2>
             <div class="info-basica">
-                <ul>
-                    <li><strong>Nivel:</strong> 45</li>
-                    <li><strong>Rango:</strong> Diamante</li>
-                    <li><strong>País:</strong> España</li>
-                </ul>
+                <label for="username">Nombre de usuario:</label>
+                <input type="text" id="username" placeholder="Nombre de usuario">
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" placeholder="Correo electrónico">
+
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" placeholder="Contraseña">
+
+                <button id="guardar">Guardar Cambios</button>
             </div>
         </div>
-        <table class="tabla-estadisticas">
-            <thead>
-                <tr>
-                    <th>Estadística</th>
-                    <th>Valor</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Partidas Jugadas</td>
-                    <td>500</td>
-                </tr>
-                <tr>
-                    <td>Victorias</td>
-                    <td>300</td>
-                </tr>
-                <tr>
-                    <td>Ranking Global</td>
-                    <td>#120</td>
-                </tr>
-                <tr>
-                    <td>Promedio de Puntos</td>
-                    <td>1500</td>
-                </tr>
-                <tr>
-                    <td>Logros Desbloqueados</td>
-                    <td>15/20</td>
-                </tr>
-                <tr>
-                    <td>Tiempo Jugado</td>
-                    <td>250 horas</td>
-                </tr>
-            </tbody>
-        </table>
     </section>
-    <footer>
-        <p>© 2024 Tu Empresa</p>
-    </footer>
 
+    <footer>
+        <p>© 2024 Street Runner</p>
+    </footer>
+    
+    <script type="module" src="js/edit_user.js"></script>
 </body>
 </html>
