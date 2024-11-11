@@ -1,4 +1,3 @@
-// classes/Game.js
 import { Dino } from './Dino.js';
 import { Obstacle } from './Obstacle.js';
 import { Coin } from './Coin.js'; // Importar la clase Coin
@@ -20,6 +19,20 @@ export class Game {
         this.score = 0;
         this.highScore = 0; // Variable para almacenar el récord
         this.attempts = 0;  // Variable para almacenar el número de intentos
+    }
+
+    // Obtener el usuario logueado desde localStorage
+    getLoggedInUser() {
+        const username = localStorage.getItem('usernameActivo');
+        const users = JSON.parse(localStorage.getItem('usuarios')) || [];
+        return users.find(user => user.username === username);
+    }
+
+    // Guardar el usuario actualizado en localStorage
+    saveUpdatedUser(user) {
+        const users = JSON.parse(localStorage.getItem('usuarios')) || [];
+        const updatedUsers = users.map(u => u.username === user.username ? user : u);
+        localStorage.setItem('usuarios', JSON.stringify(updatedUsers));
     }
 
     start() {
@@ -123,16 +136,47 @@ export class Game {
     }
 
     updateHighScore() {
-        if (this.score > this.highScore) {
-            this.highScore = this.score; // Actualizar el récord si la puntuación actual es mayor
-            this.highScoreElement.textContent = 'Record: ' + this.highScore;
+        // Solo actualizamos el récord si la puntuación actual es mayor
+        const usernameActivo = localStorage.getItem('usernameActivo');
+        if (usernameActivo) {
+            const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+            const usuarioLogueado = usuarios.find(user => user.username === usernameActivo);
+    
+            if (usuarioLogueado) {
+                // Comprobamos si la nueva puntuación es mayor que el récord guardado
+                if (this.score > usuarioLogueado.record) {
+                    this.highScore = this.score;  // Actualizar el récord
+                    this.highScoreElement.textContent = 'Record: ' + this.highScore;
+                    usuarioLogueado.record = this.highScore;  // Actualizar el récord del usuario
+                    localStorage.setItem('usuarios', JSON.stringify(usuarios));  // Guardar los cambios en localStorage
+                }
+            }
         }
     }
-
+    
+    
     updateAttempts() {
-        this.attempts++; // Incrementar el número de intentos en cada Game Over
+        // Incrementar el número de intentos
+        this.attempts++;
         this.attemptsElement.textContent = 'Intentos: ' + this.attempts;
+    
+        // Guardar el número de intentos del usuario logueado en localStorage
+        const usernameActivo = localStorage.getItem('usernameActivo');
+        if (usernameActivo) {
+            const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+            const usuarioLogueado = usuarios.find(user => user.username === usernameActivo);
+    
+            if (usuarioLogueado) {
+                // Sumar los intentos al valor ya guardado en localStorage
+                usuarioLogueado.intentos++;
+                this.attemptsElement.textContent = 'Intentos: ' +  usuarioLogueado.intentos;
+                localStorage.setItem('usuarios', JSON.stringify(usuarios));  // Guardar los cambios en localStorage
+            }
+        }
     }
+    
+    
+    
 
     stopGame() {
         // Detener el intervalo principal de generación de obstáculos

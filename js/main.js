@@ -1,5 +1,8 @@
+// script.js
+
 import { Game } from './Game.js';
 import { User } from './User.js';
+import { UserManager } from './UserManager.js';
 
 window.onload = () => {
     // Obtener la lista de usuarios desde localStorage
@@ -14,9 +17,9 @@ window.onload = () => {
     const usuarioData = usuarios.find(u => u.username === username);
     
     // Verificar si el usuario fue encontrado y reconstruir como instancia de User
-    let usuario;
     if (usuarioData) {
-        usuario = new User(
+        // Crear una instancia de User usando los datos recuperados
+        const usuario = new User(
             usuarioData.username,
             usuarioData.password,
             usuarioData.email
@@ -25,64 +28,59 @@ window.onload = () => {
         // Restaurar otros datos del usuario
         usuario.record = usuarioData.record;
         usuario.intentos = usuarioData.intentos;
-        usuario.fechaRecord = new Date(usuarioData.fechaRecord);
+        usuario.fechaRecord = new Date(usuarioData.fechaRecord); // Convertir a fecha
 
         console.log('Usuario encontrado:', usuario);
         console.log(`Bienvenido, ${usuario.username}`);
     } else {
         console.log('Usuario no encontrado en la lista de usuarios');
     }
+};
 
-    // Crear una instancia del juego
-    const game = new Game();
+document.addEventListener('DOMContentLoaded', () => {
+    // Obtener el usuario logueado desde localStorage
+    const usernameActivo = localStorage.getItem('usernameActivo');
+    if (usernameActivo) {
+        // Obtener los datos del usuario desde localStorage
+        const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+        const usuarioLogueado = usuarios.find(user => user.username === usernameActivo);
 
-    // Seleccionar el botón de inicio/detención
-    const actionButton = document.getElementById('botonJuego');
-
-    // Variable para rastrear el estado del juego
-    let gameInProgress = false;
-
-    // Añadir el evento de clic exclusivamente para el ratón
-    actionButton.addEventListener('pointerdown', (event) => {
-        event.preventDefault(); // Evita el comportamiento por defecto del botón
-        actionButton.blur();    // Elimina el foco inmediatamente después del clic
-
-        if (!gameInProgress) {
-            game.start();  // Iniciar el juego
-            actionButton.innerText = 'Detener Juego';  // Cambiar el texto del botón
-            gameInProgress = true;  // Actualizar el estado del juego
-
-            // Incrementar intentos del usuario y guardar en localStorage
-            if (usuario) {
-                usuario.incrementarIntentos();
-                actualizarUsuarioEnLocalStorage(usuario);
-            }
-        } else {
-            // Detener el juego y restablecerlo
-            const puntajeFinal = game.stopGame();
-            actionButton.innerText = 'Iniciar Juego';  // Cambiar el texto del botón
-            gameInProgress = false;  // Actualizar el estado del juego
-
-            // Actualizar récord del usuario si se alcanza un nuevo récord
-            if (usuario && puntajeFinal > usuario.record) {
-                usuario.actualizarRecord(puntajeFinal);
-                alert(`¡Nuevo récord: ${puntajeFinal}!`);
-                actualizarUsuarioEnLocalStorage(usuario);
-            }
-        }
-    });
-
-    // Función para actualizar el usuario en localStorage
-    function actualizarUsuarioEnLocalStorage(usuarioActualizado) {
-        // Buscar el índice del usuario en la lista
-        const index = usuarios.findIndex(u => u.username === usuarioActualizado.username);
-        
-        if (index !== -1) {
-            // Actualizar el usuario en la lista
-            usuarios[index] = usuarioActualizado;
-
-            // Guardar la lista actualizada en localStorage
-            localStorage.setItem('usuarios', JSON.stringify(usuarios));
+        if (usuarioLogueado) {
+            // Mostrar el récord y los intentos en los elementos correspondientes
+            const scoreElement = document.getElementById('score');
+            const highScoreElement = document.getElementById('highScore');
+            const attemptsElement = document.getElementById('attempts');
+            
+            // Mostrar la puntuación, récord e intentos
+            highScoreElement.textContent = `Record: ${usuarioLogueado.record}`;
+            attemptsElement.textContent = `Intentos: ${usuarioLogueado.intentos}`;
         }
     }
-};
+});
+
+
+
+// Crear una instancia del juego
+const game = new Game();
+
+// Seleccionar el botón de inicio/detención
+const actionButton = document.getElementById('botonJuego');
+
+// Variable para rastrear el estado del juego
+let gameInProgress = false;
+
+// Añadir el evento de clic exclusivamente para el ratón
+actionButton.addEventListener('pointerdown', (event) => {
+    event.preventDefault(); // Evita el comportamiento por defecto del botón
+    actionButton.blur();    // Elimina el foco inmediatamente después del clic
+
+    if (!gameInProgress) {
+        game.start();  // Iniciar el juego
+        actionButton.innerText = 'Detener Juego';  // Cambiar el texto del botón
+        gameInProgress = true;  // Actualizar el estado del juego
+    } else {
+        game.stopGame();  // Detener el juego y restablecerlo
+        actionButton.innerText = 'Iniciar Juego';  // Cambiar el texto del botón
+        gameInProgress = false;  // Actualizar el estado del juego
+    }
+});
